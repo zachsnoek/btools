@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+#Broadcast ssh
+for host in `cat /usr/local/sbin/bhosts`
+do
+    echo "*****${host}*****"
+    ssh ${host} $*
+done

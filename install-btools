@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for file in files/*
+do 
+	name=${file##*/}
+	cat $file > /usr/local/sbin/$name
+	chmod 755 /usr/local/sbin/$name
+done

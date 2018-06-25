@@ -1,0 +1,9 @@
+#!/bin/csh
+#
+foreach host (`grep -v \# /usr/local/sbin/bhosts`)
+    echo "Synching ${host}"
+    foreach file (`cat /usr/local/sbin/bfiles`)
+        echo "Copying ${file}"
+        rsync --timeout=10 ${file} ${host}:${file}
+    end
+end

@@ -1,0 +1,26 @@
+#!/bin/sh
+# The total number of nodes (determined dynamically)
+let nhost=0
+#Run the command on each node, logging output
+for host in `cat /usr/local/sbin/bhosts`
+do
+    logfile="/tmp/${host}.$$.log"
+    echo "***** ${host} *****" > $logfile
+    rcp $1 ${host}:$2 >> $logfile &
+    pids[nhost]=$!
+    let nhost=nhost+1
+done
+
+#Wait for all processes to finish
+for ((i=0; i < nhost; i++))
+do
+    wait ${pids[$i]}
+done
+
+# Concatenate the results and cleanup
+for host in `cat /usr/local/sbin/bhosts`
+do
+    logfile="/tmp/${host}.$$.log"
+    cat $logfile
+    rm $logfile
+done

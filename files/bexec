@@ -1,0 +1,52 @@
+#!/bin/sh
+
+# The total number of nodes (determined dynamically)
+let nhost=0
+
+# Check if the user has Slurm configured yet
+if [ -e /etc/slurm/slurm.conf ]
+then 
+    # Find Slurm hosts that are down and should therefore be skipped
+    down=`/usr/bin/sinfo -dhN | /bin/awk {'print $1'}`
+    
+    # Run the command on each node, logging output
+    for host in `grep -v \# /usr/local/sbin/bhosts`
+    do
+        echo $down | /bin/grep -q $host
+        if [[ $? > 0 ]]
+        then
+            logfile="/tmp/${host}.$$.log"
+            echo "***** ${host} *****" > $logfile
+            rsh ${host} $* >> $logfile 2>&1
+            pids[nhost]=$!
+            let nhost=nhost+1
+        else
+            echo Skipping $host because Slurm says that it is down
+        fi
+    done
+else
+    echo Slurm is not configured. bexec will not check for down nodes
+    echo ""
+    for host in `grep -v \# /usr/local/sbin/bhosts`
+    do
+        logfile="/tmp/${host}.$$.log"
+        echo "***** ${host} *****" > $logfile
+        rsh ${host} $* >> $logfile 2>&1
+        pids[nhost]=$!
+        let nhost=nhost+1
+    done
+fi
+
+# Wait for all processes to finish
+for ((i=0; i < nhost; i++))
+do
+    wait ${pids[$i]}
+done
+
+# Concatenate the results and cleanup
+for host in `grep -v \# /usr/local/sbin/bhosts`
+do
+    logfile="/tmp/${host}.$$.log"
+    cat $logfile 2> /dev/null
+    rm $logfile 2> /dev/null
+done
