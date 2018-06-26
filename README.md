@@ -23,7 +23,7 @@ node04
 **brsh** loops through all of the hostnames in `bhosts`, executing `rsh <command>` for each.
 </br></br>
 
-**bexec** executes a command over the hostnames in `bhosts`, but does not wait for each node to finish like `brsh`. `bexec` starts the command on each node and then waits for them to finish; additionally, it retrieves and displays the logs for the operations.
+**bexec** executes a command over the hostnames in `bhosts`, but it does not wait for each node to finish like `brsh` does. `bexec` starts the command on each node and then waits for them to finish; additionally, it retrieves and displays the logs for the operations. If Slurm is set up on the cluster, `bexec` will check will status of the compute nodes through Slurm.
 </br></br>
 
 **bpush**
