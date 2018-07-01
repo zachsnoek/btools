@@ -1,6 +1,6 @@
 # btools  
 A series of scripts to automate the execution of commands within a cluster.</br>
-Adapted from [BYOC](https://www.webmo.net/support/byoc.pdf) by Vance and [Polik](https://github.com/poliklab) for use with BYOC++.</br>
+Adapted from [BYOC](https://www.webmo.net/support/byoc.pdf) by [Vance](https://github.com/NathanRVance) and [Polik](https://github.com/poliklab) for use with BYOC++.</br>
 
 ## Add btools  
 Run this script to save yourself some precious time</br>      
