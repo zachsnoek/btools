@@ -1,9 +1,10 @@
 # btools  
 A series of scripts to automate the execution of commands within a cluster.</br>
+Adapted from [BYOC](https://www.webmo.net/support/byoc.pdf) by Vance and [Polik](https://github.com/poliklab) for use with BYOC++.</br>
 
-## Installation  
-Run the installation script</br>      
-`$ ./install-btools`</br>    
+## Add btools  
+Run this script to save yourself some precious time</br>      
+`$ ./add-btools`</br>    
 Add the hostnames of your compute nodes to `/usr/local/sbin/hosts`</br>    
 ```
 node02
