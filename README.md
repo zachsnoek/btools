@@ -3,17 +3,18 @@ A series of scripts to automate the execution of commands within a cluster.</br>
 Adapted from [BYOC](https://www.webmo.net/support/byoc.pdf) by [Vance](https://github.com/NathanRVance) and [Polik](https://github.com/poliklab) for use with BYOC++.</br>
 
 ## Add btools  
-Run this script to save yourself some precious time</br>      
-`$ ./add-btools`</br>    
-Add the hostnames of your compute nodes to `/usr/local/sbin/hosts`</br>    
-```
-node02
-node03
-node04
-```  
+1. On the head node, run `add-btools`</br></br>
+   `$ ./add-btools`</br></br>
+
+2. Add the hostnames of your compute nodes to `/usr/local/sbin/hosts`</br></br>
+   ```
+   node02
+   node03
+   node04
+   ```  
 
 ## Description
-**bhosts** is a file that contains the hostnames of all of the compute nodes. For example:
+**bhosts** is a file that contains the hostnames of all of the compute nodes. For example:</br></br>
 ```
 node02
 node03
@@ -32,7 +33,7 @@ node04
 </br></br>
 
 **bfiles**
-`bfiles` is a file that contains a list of files to be copied to all of the compute nodes. It contains:
+`bfiles` is a file that contains a list of files to be copied to all of the compute nodes. It contains:</br></br>
 ```
 /etc/passwd/
 /etc/group/
