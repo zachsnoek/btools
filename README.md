@@ -6,7 +6,7 @@ Adapted from [BYOC](https://www.webmo.net/support/byoc.pdf) by [Vance](https://g
 1. On the head node, run `add-btools`</br></br>
    `$ ./add-btools`</br></br>
 
-2. Add the hostnames of your compute nodes to `/usr/local/sbin/hosts`</br></br>
+2. Add the hostnames of your compute nodes to `/usr/local/sbin/bhosts`</br></br>
    ```
    node02
    node03
