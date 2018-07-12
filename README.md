@@ -1,18 +1,68 @@
 # btools  
 A series of scripts to automate the execution of commands within a cluster.</br>
-Adapted from [BYOC](https://www.webmo.net/support/byoc.pdf) by [Vance](https://github.com/NathanRVance) and [Polik](https://github.com/poliklab) for use with BYOC++.</br>
+Adapted from [BYOC](https://www.webmo.net/support/byoc.pdf) by [Vance](https://github.com/NathanRVance) and [Polik](https://github.com/poliklab) for use with BYOC++.</br></br>
 
-## Add btools  
-1. On the head node, run `add-btools`</br></br>
-   `$ ./add-btools`</br></br>
+## Conventions
+* The head node is identified as `node01`
+* The compute nodes are identified as `node02` and `node03`</br></br>
 
-2. Add the hostnames of your compute nodes to `/usr/local/sbin/bhosts`</br></br>
-   ```
-   node02
-   node03
-   node04
-   ```  
+## Installation
+1. On all of the nodes, install and configure `rsh`</br></br>
 
+   a. Install the required packages</br></br>
+      `$ yum install -y rsh rsh-server`</br></br>
+
+   b. In `/etc/securetty`, add the following lines</br></br>
+      `rsh`</br>
+      `rexec`</br>
+      `rlogin`</br></br>
+
+   c. In `/root/.rhosts`, add the following lines</br></br>
+      `node01 root`</br>
+      `node02 root`</br>
+      `node03 root`</br></br>
+
+   d. In `/etc/hosts.equiv`, add the following lines</br></br>
+      `node01`</br>
+      `node02`</br>
+      `node03`</br></br>
+
+   e. Enable and start the sockets</br></br>
+      `$ systemctl enable rsh.socket`</br>
+      `$ systemctl enable rexec.socket`</br>
+      `$ systemctl enable rlogin.socket`</br>
+      `$ systemctl start rsh.socket`</br>
+      `$ systemctl start rexec.socket`</br>
+      `$ systemctl start rlogin.socket`</br></br>
+
+   f. Disable SELinux by changing `SELINUX=enforcing` in `/etc/sysconfig/selinux`</br></br>
+      `SELINUX=disabled`</br></br>
+      
+   g. Reboot all of the nodes</br></br>
+      `$ init 6`</br></br>
+
+2. On the head node, run `btools` to create all of the scripts on your machine</br></br>
+   `$ ./btools`</br></br>
+
+3. Add the hostnames of your compute nodes to `/usr/local/sbin/bhosts`</br></br>
+   `node02`</br>
+   `node03`</br></br>
+
+4. Enable passwordless rsh to remove password prompts for the `bsync` command</br></br>
+
+   a. Generate a public/private rs key pair; leave all of the prompts blank and hit enter for each</br></br>
+      `$ ssh-keygen`</br>
+      `Generating public/private rsa key pair.`</br>
+      `Enter file in which to save the key (/root/.ssh/id_rsa):`</br>
+      `Enter passphrase (empty for no passphrase):`</br>
+      `Enter same passphrase again:`</br>
+      `Your identification has been saved in /root/.ssh/id_rsa.`</br>
+      `Your public key has been saved in /root/.ssh/id_rsa.pub.`</br></br>
+
+   b. Copy the public ssh key to all of the compute nodes and enter the passwords for each machine when prompted</br></br>
+      `$ ssh-copy-id -i /root/.ssh/id_rsa.pub node02`</br>
+      `$ ssh-copy-id -i /root/.ssh/id_rsa.pub node03`</br></br>
+   
 ## Description
 **bhosts** is a file that contains the hostnames of all of the compute nodes. For example:</br></br>
 ```
