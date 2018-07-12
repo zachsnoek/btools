@@ -50,7 +50,7 @@ Adapted from [BYOC](https://www.webmo.net/support/byoc.pdf) by [Vance](https://g
 
 4. Enable passwordless rsh to remove password prompts for the `bsync` command</br></br>
 
-   a. Generate a public/private rs key pair; leave all of the prompts blank and hit enter for each</br></br>
+   a. Generate a public/private rsa key pair; leave all of the prompts blank and hit enter for each</br></br>
       `$ ssh-keygen`</br>
       `Generating public/private rsa key pair.`</br>
       `Enter file in which to save the key (/root/.ssh/id_rsa):`</br>
