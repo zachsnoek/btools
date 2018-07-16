@@ -1,6 +1,7 @@
 # btools  
-A series of scripts to automate the execution of commands within a cluster.</br>
-Adapted from [BYOC](https://www.webmo.net/support/byoc.pdf) by [Vance](https://github.com/NathanRVance) and [Polik](https://github.com/poliklab) for use with BYOC++.</br></br>
+A series of scripts to automate the execution of commands within a cluster.</br></br>
+Adapted from BYOC (Vance, Poublon, & Polik, 2016) for use with BYOC++ and [Hocker](https://github.com/zachsnoek/hocker).
+</br></br>
 
 ## Conventions
 * The head node is identified as `node01`
@@ -94,4 +95,9 @@ node04
 
 **bsync**
 `bsync` copies the files defined in `bfiles` to all of the compute nodes. Thus, the users on the head node will exist on all of the compute nodes.
+</br></br>
+
+## References
+Nathan R. Vance, Michael L. Poublon and William F. Polik, "BYOC: Build Your Own Cluster, Part III - Configuration",</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux Journal, July 2016, Issue 279, 70-98.
 </br>
