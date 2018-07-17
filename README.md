@@ -1,6 +1,6 @@
 # btools  
 A series of scripts to automate the execution of commands within a cluster.</br></br>
-Adapted from BYOC (Vance, Poublon, & Polik, 2016) for use with BYOC++ and [Hocker](https://github.com/zachsnoek/hocker).
+Adapted from BYOC (Vance, Poublon, & Polik, 2016) for use with BYOC++.
 </br></br>
 
 ## Conventions
