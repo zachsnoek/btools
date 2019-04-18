@@ -17,7 +17,7 @@ then
         then
             logfile="/tmp/${host}.$$.log"
             echo "***** ${host} *****" > $logfile
-            rsh ${host} $* >> $logfile 2>&1
+            ssh ${host} $* >> $logfile 2>&1
             pids[nhost]=$!
             let nhost=nhost+1
         else
@@ -31,7 +31,7 @@ else
     do
         logfile="/tmp/${host}.$$.log"
         echo "***** ${host} *****" > $logfile
-        rsh ${host} $* >> $logfile 2>&1
+        ssh ${host} $* >> $logfile 2>&1
         pids[nhost]=$!
         let nhost=nhost+1
     done
