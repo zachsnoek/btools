@@ -6,7 +6,7 @@ for host in `cat /usr/local/sbin/bhosts`
 do
     logfile="/tmp/${host}.$$.log"
     echo "***** ${host} *****" > $logfile
-    scp -r $1 ${host}:$2 >> $logfile &
+    scp -r $1 root@${host}:$2 >> $logfile &
     pids[nhost]=$!
     let nhost=nhost+1
 done
